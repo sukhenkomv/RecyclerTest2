@@ -15,12 +15,15 @@ class MainActivity : AppCompatActivity() {
 
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        recyclerView.adapter = CustomRecyclerAdapter(fillList())
-//            , object: OnNoteListener{
-//            override fun onNoteClick(position: Int) {
-//                TODO("Not yet implemented")
-//            }
-//        })
+        recyclerView.adapter = CustomRecyclerAdapter(fillList(), object : SettingsItemListener {
+            override fun onItemClick(position: Int) {
+                Log.e("MainActivity", "onItemClick")
+            }
+
+            override fun onFocusChanged() {
+                Log.e("MainActivity", "onFocusChanged")
+            }
+        })
 
         recyclerView.setOnClickListener {
             Log.e("MainActivity", "OnClickListener")
